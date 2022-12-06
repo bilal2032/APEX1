@@ -21,3 +21,4 @@ The `sfdx-project.json` file contains useful configuration information for your 
 
 --some changes
 --change in Dev branch.
+--change in Dev branch again, dev branch exist in remote repository. So we 'git push'.
