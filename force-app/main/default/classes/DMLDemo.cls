@@ -22,4 +22,13 @@ public class DMLDemo {
         update acc;
       
     }
+    public static void dmlUpdateDemo_2() {
+        Account acc = new account();
+        acc.Name = 'Oz\'s Store';
+        insert acc; 
+        
+        acc.Name = 'HSP Store';
+        update acc;
+      
+    }
 }
