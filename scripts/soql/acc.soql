@@ -1,0 +1,5 @@
+SELECT Id, name FROM Account
+
+SELECT ID, name, mailingcity FROM contact where name like '%A'
+
+SELECT Id, Name, Priority__c, Status__c, Subject__c FROM Salesforce_Ticket__c where status__c != '' and Priority__c != 'high' 

@@ -1,0 +1,1 @@
+EmployeeInfo.employeeDetails('Bilal Ozturk');

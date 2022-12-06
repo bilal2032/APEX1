@@ -1,0 +1,15 @@
+ForEachLoopDemo1.iterateIntegerList();
+List<integer> listInt = new List<integer>();
+        listInt.add(10);
+        listInt.add(23);
+        listInt.add(10);
+        listInt.add(-4);
+        listInt.add(13);
+        listInt.add(10);
+        listInt.add(10);
+        listInt.add(23);
+        listInt.add(10);
+        listInt.add(-4);
+        listInt.add(13);
+        listInt.add(10);
+ForEachLoopDemo1.add(listInt);

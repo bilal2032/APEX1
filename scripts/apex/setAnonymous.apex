@@ -1,0 +1,23 @@
+SetDemo.citySet();
+SetDemo.randomIntegerSet();
+List<integer> listInteger = new List<integer>();
+        listInteger.add(10);
+        listInteger.add(23);
+        listInteger.add(10);
+        listInteger.add(-4);
+        listInteger.add(13);
+        listInteger.add(10);
+set<integer> setInteger = SetDemo.setFromList(listInteger);
+system.debug('set ---> ' + setInteger);
+
+set<string> cities = new set<string>();
+        cities.add('Tokyo');
+        cities.add('Paris');
+        cities.add('Pekin');
+        cities.add('Nairobi');
+        cities.add('Nairobi');
+        cities.add('Berlin');
+        cities.add('Tokyo');
+        cities.add('TOKYO');
+ set<string> uppercaseCities = SetDemo.uppercaseSet(cities);
+ system.debug('Upper case cities are ' + uppercaseCities);       
