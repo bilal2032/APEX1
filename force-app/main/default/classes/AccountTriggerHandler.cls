@@ -1,6 +1,5 @@
 public class AccountTriggerHandler {
-    public static void updateAccountDescription(List<account> accTriggerNew, List<account> accTriggerOld, 
-                                    Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
+    public static void updateAccountDescription(List<account> accTriggerNew, List<account> accTriggerOld, Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
         for (Account eachAccount : accTriggerNew) {
             boolean updateDesc = false;
             if (Trigger.isInsert && eachAccount.Active__c == 'Yes') {
