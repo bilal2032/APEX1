@@ -19,7 +19,10 @@ public class AccountTriggerHandler {
             }
         }
     }
-    public static void updateVIPforContacts(List<account> accTriggerNew, List<account> accTriggerOld, Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
+    public static void updateVIPforContacts(List<account> accTriggerNew, 
+                                            List<account> accTriggerOld, 
+                                            Map<id, account> accTriggerNewMap, 
+                                            Map<id, account> accTriggerOldMap) {
             //set of account ids
             set<id> accountIds = new set<id>();
         //for trigger.new
@@ -40,10 +43,10 @@ public class AccountTriggerHandler {
             for (contact eachContact : allContacts) {
                 //set vip field same as account's vip field
                 //eachContact.vip__c = account's vip field
-                account newAcc = accTriggerNewMap.get(eachContact.AccountId);
-                boolean accVIP = newAcc.vip__c;
+                // account newAcc = accTriggerNewMap.get(eachContact.AccountId);
+                // boolean accVIP = newAcc.vip__c;
 
-                eachContact.vip__c = accVIP;
+                eachContact.vip__c = accTriggerNewMap.get(eachContact.AccountId).vip__c;
             }
             //update contacts
             update allContacts;
