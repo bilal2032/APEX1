@@ -1,4 +1,27 @@
 public class SalesProjectTriggerHandler {
+
+// 1.Write trigger on Salesforce Project Object.
+// 2.When Salesforce Project status is completed. Then query all salesforce tickets which is not completed(status).
+// 3.Make Salesforce Ticket status completed.
+
+    public static void method1(List<Salesforce_Project__c> ltriggernew, Map<Id,Salesforce_Project__c> triggernewMap, map<id,Salesforce_Project__c> triggeroldMap) {
+        set<id> ids = new set<id>();
+        for(Salesforce_Project__c sp : ltriggernew){
+            if(sp.Status__c=='Completed' && sp.Status__c!=triggeroldmap.get(sp.id).status__c){
+                ids.add(sp.id);
+            }
+        }
+
+        List<Salesforce_Ticket__c> stList =[select id, name, Salesforce_Project__c, status__c from Salesforce_Ticket__c where Salesforce_Project__c   in : ids  and status__c!='Completed'];
+        for(Salesforce_Ticket__c spp : stList){
+            spp.Status__c = 'Completed';
+        }
+        update stList;
+    }
+/*
+
+
+
     public static void createDefaultTicket(List<salesforce_project__c> spTriggerNew) {
          List<Salesforce_Ticket__c> stList = new list<Salesforce_Ticket__c>();
          for (salesforce_project__c eachSP : spTriggerNew) {
@@ -28,5 +51,5 @@ public class SalesProjectTriggerHandler {
             Salesforce_Project__c sp = spTriggerNewMap.get(eachst.Salesforce_Project__c);
             sp.Status__c.addError('Cannot complete project because all tickets are not completed. Go away now.');
         }
-   }
+   }*/
 }
