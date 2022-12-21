@@ -6,6 +6,9 @@ trigger AccountTrigger on Account (before insert, before update, after insert, a
     if (Trigger.isAfter && Trigger.isUpdate) {
         //call method to update VIP fields of all contacts.
         AccountTriggerHandler.updateVIPforContacts(trigger.new, trigger.old, trigger.newMap, trigger.oldMap);
+    }
+    if(Trigger.isBefore && Trigger.isUpdate){
+        AccountTriggerHandler.updateContactsMailingCity(trigger.New, trigger.NewMap, trigger.OldMap);
     }           
 }
 

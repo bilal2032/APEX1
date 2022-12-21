@@ -52,4 +52,20 @@ public class AccountTriggerHandler {
             update allContacts;
         }      
     }
+    public static void updateContactsMailingCity(List<account> triggerNew, Map<id, account> triggerNewMap, Map<id, account> triggerOldMap) {
+        Set<id> accIDs = new Set<id>();
+        for(account eachAcc : triggerNew){
+            if (eachAcc.BillingCity != triggerOldMap.get(eachAcc.id).BillingCity) {
+                accIDs.add(eachAcc.id);                
+            }
+        }
+
+        List<Contact> listCon = [Select id, MailingAddress, accountId from Contact where accountId in : accIDs];
+        if (!listCon.isEmpty()) {
+            for(Contact eachCon : listCon){
+                eachCon.MailingCity = triggerNewMap.get(eachCon.accountId).BillingCity;
+            }
+            update listCon;            
+        }        
+    }
 }

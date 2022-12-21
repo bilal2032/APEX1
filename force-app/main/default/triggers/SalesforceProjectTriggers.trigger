@@ -1,5 +1,13 @@
 trigger SalesforceProjectTriggers on Salesforce_Project__c (before insert, after insert, before update, after update) {
 
+    if (trigger.isBefore && trigger.isUpdate) {
+
+        SalesProjectTriggerHandler.updateSTstatus(trigger.New, trigger.OldMap);
+        
+    }
+
+    /*
+
     if(trigger.isAfter && trigger.isUpdate){
         SalesProjectTriggerHandler.method1(trigger.new,trigger.newMap,trigger.oldMap);
         }

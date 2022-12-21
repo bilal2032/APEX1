@@ -1,4 +1,24 @@
 public class SalesProjectTriggerHandler {
+    public static void updateSTstatus(list<Salesforce_Project__c> triggerNew, Map<id, Salesforce_Project__c> triggerOldMap) {
+
+        Set<id> spIDs = new Set<id>();
+        for(Salesforce_Project__c eachSP : triggerNew){
+            if(eachSP.Status__c == 'Completed' && eachSP.Status__c != triggeroldMap.get(eachSP.id).Status__c){
+                spIDs.add(eachSP.id);
+            }
+        }
+
+        List<Salesforce_Ticket__c> listST = [Select id, Status__c, Salesforce_Project__c from Salesforce_Ticket__c where Salesforce_Project__c in : spIDs];
+
+        for(Salesforce_Ticket__c eachST : listST){
+            eachST.Status__c = 'Completed';
+        }
+        update listST;        
+        
+    }
+
+
+    /*
 
 // 1.Write trigger on Salesforce Project Object.
 // 2.When Salesforce Project status is completed. Then query all salesforce tickets which is not completed(status).
