@@ -1,5 +1,6 @@
 public class AccountTriggerHandler {
-    public static void updateAccountDescription(List<account> accTriggerNew, List<account> accTriggerOld, Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
+    public static void updateAccountDescription(List<account> accTriggerNew, List<account> accTriggerOld, 
+                                    Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
         for (Account eachAccount : accTriggerNew) {
             boolean updateDesc = false;
             if (Trigger.isInsert && eachAccount.Active__c == 'Yes') {
@@ -9,7 +10,6 @@ public class AccountTriggerHandler {
                 Id accId = eachAccount.Id;
                 Account oldAcc = accTriggerOldMap.get(accId);
                 Account newAcc = accTriggerNewMap.get(eachAccount.Id);
-                
                 if(eachAccount.Active__c == 'Yes' && oldAcc.Active__c != newAcc.Active__c){
                     updateDesc = true;
                 }
@@ -19,10 +19,9 @@ public class AccountTriggerHandler {
             }
         }
     }
-    public static void updateVIPforContacts(List<account> accTriggerNew, 
-                                            List<account> accTriggerOld, 
-                                            Map<id, account> accTriggerNewMap, 
-                                            Map<id, account> accTriggerOldMap) {
+
+    public static void updateVIPforContacts(List<account> accTriggerNew, List<account> accTriggerOld, 
+    Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
             //set of account ids
             set<id> accountIds = new set<id>();
         //for trigger.new
@@ -33,39 +32,20 @@ public class AccountTriggerHandler {
                 accountIds.add(eachAcc.Id);
              }
         } //we have all acc ids where is vip is changed
-           
         //get contacts of all the accounts where vip is changed. 
         list<contact> allContacts = [select id, vip__c, accountId from contact where accountId in :accountIds];
        
         if (!allContacts.isEmpty()) {
-            
             //for loop of contact
             for (contact eachContact : allContacts) {
                 //set vip field same as account's vip field
                 //eachContact.vip__c = account's vip field
-                // account newAcc = accTriggerNewMap.get(eachContact.AccountId);
-                // boolean accVIP = newAcc.vip__c;
+                account newAcc = accTriggerNewMap.get(eachContact.AccountId);
+                boolean accVIP = newAcc.vip__c;
 
                 eachContact.vip__c = accTriggerNewMap.get(eachContact.AccountId).vip__c;
             }
-            //update contacts
             update allContacts;
-        }      
-    }
-    public static void updateContactsMailingCity(List<account> triggerNew, Map<id, account> triggerNewMap, Map<id, account> triggerOldMap) {
-        Set<id> accIDs = new Set<id>();
-        for(account eachAcc : triggerNew){
-            if (eachAcc.BillingCity != triggerOldMap.get(eachAcc.id).BillingCity) {
-                accIDs.add(eachAcc.id);                
-            }
         }
-
-        List<Contact> listCon = [Select id, MailingAddress, accountId from Contact where accountId in : accIDs];
-        if (!listCon.isEmpty()) {
-            for(Contact eachCon : listCon){
-                eachCon.MailingCity = triggerNewMap.get(eachCon.accountId).BillingCity;
-            }
-            update listCon;            
-        }        
     }
 }

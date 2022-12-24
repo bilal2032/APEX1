@@ -7,162 +7,170 @@ trigger AccountTrigger on Account (before insert, before update, after insert, a
         //call method to update VIP fields of all contacts.
         AccountTriggerHandler.updateVIPforContacts(trigger.new, trigger.old, trigger.newMap, trigger.oldMap);
     }
-    if(Trigger.isBefore && Trigger.isUpdate){
-        AccountTriggerHandler.updateContactsMailingCity(trigger.New, trigger.NewMap, trigger.OldMap);
-    }           
-}
-
     /*
-    list<account> accTriggerNew = trigger.new;
-    list<account> accTriggerOld = trigger.old;
+    List<account> accTriggerNew = trigger.new;
+    List<account> accTriggerOld = trigger.old;
     Map<id, account> accTriggerNewMap = trigger.newmap;
-    Map<id, account> accTriggerOldMap = trigger.oldmap;
+    Map<id, account> accTriggerOldMap = trigger.oldMap;
+    //keys means ids of newMap and oldMap are SAME (update)
 
-    if(Trigger.isAfter && Trigger.isUpdate){
-        set<id> accIds = accTriggerNewMap.keyset();
 
+    if (Trigger.isAfter && Trigger.isUpdate) {
+        Set<id> accIds = accTriggerNewMap.keySet();
+        //for each loop of set of ids
+            //get value of new account using ID from newMap
+            //get value of old account using ID from oldMap
         integer countWebsite = 0;
+        for (Id eachId : accIds) {
+            system.debug('eachId -> ' + eachId);
 
-        for(id eachid: accIds){
-            system.debug('each ID ' + eachid);
             account newAccount = accTriggerNewMap.get(eachId);
-            system.debug('new account name is ' + newAccount.Name);
-            string newWebsite = newAccount.website;
+            system.debug('newAccount name -> ' + newAccount.Name);
+            string newWebsite = newAccount.Website;
 
             account oldAccount = accTriggerOldMap.get(eachId);
-            system.debug('old account name is ' + oldAccount.Name);
-            string oldWebsite = oldAccount.website;          
+            system.debug('oldAccount name -> ' + oldAccount.Name);
+            string oldWebsite = oldAccount.Website;
 
             if (newWebsite != oldWebsite) {
-                system.debug('Account is ' + newAccount.name + ' new website is ' + newWebsite);
-                countWebsite++;                 
+                system.debug('Account ' + newaccount.Name + ', new website is ' + newWebsite);
+                countWebsite++;
             }
         }
-        system.debug('# of website updated ' + countWebsite);
+        system.debug('# account website updated --> ' + countWebsite);
+    }
+    */
+/*
+    if (Trigger.isBefore && Trigger.isInsert) {
+        system.debug('before insert trigger new: ' + accTriggerNew); //yes, but no id
+        system.debug('before insert trigger old: ' + accTriggerOld); //null
+        system.debug('before insert trigger new map: ' + accTriggerNewMap);//null
+        system.debug('before insert trigger old map: ' + accTriggerOldMap);//null
+    }
+    if (Trigger.isAfter && Trigger.isInsert) {
+        system.debug('after insert trigger new: ' + accTriggerNew);//yes
+        system.debug('after insert trigger old: ' + accTriggerOld);//null
+        system.debug('after insert trigger new map: ' + accTriggerNewMap);//yes
+        system.debug('after insert trigger old map: ' + accTriggerOldMap);//null
     }
 
-    list<account> accTriggerNew = trigger.new;
-    list<account> accTriggerOld = trigger.old;
-    Map<id, account> accTriggerNewMap = trigger.newmap;
-    Map<id, account> accTriggerOldMap = trigger.oldmap;
-    
-    if(Trigger.isBefore && Trigger.isInsert){
-        system.debug('before insert trigger new: '+ accTriggerNew);
-        system.debug('before insert trigger old: '+ accTriggerOld);
-        system.debug('before insert trigger new map: '+ accTriggerNewMap);
-        system.debug('before insert trigger old map: '+ accTriggerOldMap);
+    if (Trigger.isBefore && Trigger.isUpdate) {
+        //all variable YES (not null)
+        system.debug('before update trigger new: ' + accTriggerNew);
+        system.debug('before update trigger old: ' + accTriggerOld);
+        system.debug('before update trigger new map: ' + accTriggerNewMap);
+        system.debug('before update trigger old map: ' + accTriggerOldMap);
     }
-
-    if(Trigger.isAfter && Trigger.isInsert){
-        system.debug('after insert trigger new: '+ accTriggerNew);
-        system.debug('after insert trigger old: '+ accTriggerOld);
-        system.debug('after insert trigger new map: '+ accTriggerNewMap);
-        system.debug('after insert trigger old map: '+ accTriggerOldMap);
+    if (Trigger.isAfter && Trigger.isUpdate) {
+        //all variable YES (not null)
+        system.debug('after update trigger new: ' + accTriggerNew);
+        system.debug('after update trigger old: ' + accTriggerOld);
+        system.debug('after update trigger new map: ' + accTriggerNewMap);
+        system.debug('after update trigger old map: ' + accTriggerOldMap);
     }
-    if(Trigger.isBefore && Trigger.isUpdate){
-        system.debug('before update trigger new: '+ accTriggerNew);
-        system.debug('before update trigger old: '+ accTriggerOld);
-        system.debug('before update trigger new map: '+ accTriggerNewMap);
-        system.debug('before update trigger old map: '+ accTriggerOldMap);
-    }
-
-    if(Trigger.isAfter && Trigger.isUpdate){
-        system.debug('after updatet trigger new: '+ accTriggerNew);
-        system.debug('after update trigger old: '+ accTriggerOld);
-        system.debug('after update trigger new map: '+ accTriggerNewMap);
-        system.debug('after update trigger old map: '+ accTriggerOldMap);
-    }
-
+*/
+    /*
     if (Trigger.isAfter) {
-        list<account> accTriggerNew = trigger.new;
-
+        List<account> accTriggerNew = trigger.new;
+        //new set of id
         set<id> accountIds = new set<id>();
         for (account newAcc : accTriggerNew) {
-            accountIds.add(newAcc.Id);
-              
+            accountIds.add(newAcc.Id);//add id to the set
         }
-        system.debug(accountIds);
-        
-    }
+        system.debug('set of id >>> ' + accountids);
+    } */
+    /*if (Trigger.isAfter && Trigger.isUpdate) {
+        List<account> accTriggerOld = trigger.old;
+        for (account oldAcc : accTriggerOld) {
+            system.debug('old acc id ' + oldAcc.id + ', old acc name is ' + oldAcc.Name);
+        }
 
-    if (Trigger.isAfter && Trigger.isUpdate) {
-        for (account oldAcc : Trigger.old) {
-            system.debug('old acc id ' + oldAcc.id + ', old acc name is ' + oldAcc.name);
-            
+        List<account> accTriggerNew = trigger.new;
+        for (account newAcc : accTriggerNew) {
+            system.debug('new acc id ' + newAcc.id + ' new acc name is ' + newAcc.Name);
         }
-        for (account newAcc : Trigger.new) {
-            system.debug('new acc id ' + newAcc.id + ', new acc name is ' + newAcc.name);
-            
-        }
-        
-    }
-
+    }*/
+    /*
     if (Trigger.isBefore && Trigger.isInsert) {
-        system.debug('before insert trigger.old is ' + trigger.old);        
+        system.debug('before insert trigger.old is ' + trigger.old); //null.
     }
     if (Trigger.isAfter && Trigger.isInsert) {
-        system.debug('after insert trigger.old is ' + trigger.old);        
+        system.debug('after insert trigger.old is ' + trigger.old); //null.
     }
     if (Trigger.isBefore && Trigger.isUpdate) {
-        system.debug('before update trigger.old is ' + trigger.old);        
+        system.debug('before udpate trigger.old is ' + trigger.old); //null.
     }
     if (Trigger.isAfter && Trigger.isUpdate) {
-        system.debug('after update trigger.old is ' + trigger.old);        
-    }
-
-    
+        system.debug('after update trigger.old is ' + trigger.old); //null.
+    }*/
+    /*
     list<account> accTriggerNew = trigger.new;
     if (Trigger.isBefore && Trigger.isInsert) {
-        system.debug('record in before insert : ' + accTriggerNew);
-        system.debug('before # of records inserted : ' + accTriggerNew.size());
-        for (account eachAcc: accTriggerNew){
-            system.debug('acc id is ' + eachAcc.id + ', acc name is ' + eachAcc.name);
-        }        
-    }
-    if (Trigger.isAfter && Trigger.isInsert) {
-        system.debug('record in after insert : ' + accTriggerNew);
-        system.debug('after # of records inserted : ' + accTriggerNew.size());
-        for (account eachAcc: accTriggerNew){
-            system.debug('acc id is ' + eachAcc.id + ', acc name is ' + eachAcc.name);
-        }        
-    }
-    if (Trigger.isBefore && Trigger.isUpdate) {
-        system.debug('record in before update : ' + accTriggerNew);
-        system.debug('before # of records updated : ' + accTriggerNew.size());
-        for (account eachAcc: accTriggerNew){
-            system.debug('acc id is ' + eachAcc.id + ', acc name is ' + eachAcc.name);
-        }        
-    }
-    if (Trigger.isAfter && Trigger.isUpdate) {
-        system.debug('record in after update : ' + accTriggerNew);
-        system.debug('after # of records updated : ' + accTriggerNew.size());
-        for (account eachAcc: accTriggerNew){
-            system.debug('acc id is ' + eachAcc.id + ', acc name is ' + eachAcc.name);
-        }        
+        system.debug('BEFORE record in after insert : ' + accTriggerNew);
+        system.debug('BEFORE # of records inserted : ' + accTriggerNew.size());
+        for (account eachAcc : accTriggerNew) {
+            system.debug('BEFORE acc id is ' + eachacc.id + ', acc name is ' + eachacc.Name);
+        }
     }
 
-    
+    if (Trigger.isAfter && Trigger.isInsert) {
+        system.debug('After record in after insert : ' + accTriggerNew);
+        system.debug('After # of records inserted : ' + accTriggerNew.size());
+        for (account eachAcc : accTriggerNew) {
+            system.debug('After acc id is ' + eachacc.id + ', acc name is ' + eachacc.Name);
+        }
+    }
+
+
+    if (Trigger.isBefore && Trigger.isUpdate) {
+        system.debug('BEFORE record in after Update : ' + accTriggerNew);
+        system.debug('BEFORE # of records Update : ' + accTriggerNew.size());
+        for (account eachAcc : accTriggerNew) {
+            system.debug('BEFORE Update acc id is ' + eachacc.id + ', acc name is ' + eachacc.Name);
+        }
+    }
+
+    if (Trigger.isAfter && Trigger.isUpdate) {
+        system.debug('After record in after Update : ' + accTriggerNew);
+        system.debug('After # of records Update : ' + accTriggerNew.size());
+        for (account eachAcc : accTriggerNew) {
+            system.debug('After Update acc id is ' + eachacc.id + ', acc name is ' + eachacc.Name);
+        }
+    } */
+
+    /*
     if (Trigger.isBefore && Trigger.isInsert) {
-        system.debug('account before insert trigger called when it is inserted');    
+        system.debug('account Before Insert trigger called.');
     }
     if (Trigger.isAfter && Trigger.isInsert) {
-        system.debug('account after insert trigger called when it is inserted');        
+        system.debug('account After Insert trigggger called. yeah');
     }
     if (Trigger.isBefore && Trigger.isUpdate) {
-        system.debug('account before update trigger called when it is updated');    
+        system.debug('account Before Update trigger called.');
     }
     if (Trigger.isAfter && Trigger.isUpdate) {
-        system.debug('account after update trigger called when it is updated');        
+        system.debug('account After Update trigggger called. yeah');
     }
-    
-    
-    
+    */
+
+    /*
+    //when we insert record - trigger.isinsert will be true.
+    if (Trigger.isInsert) {
+        system.debug('account before insert trigger called');    
+    }
+    //when we update record - trigger.isUpdate will be true.
+    if (Trigger.isUpdate) {
+        system.debug('account before update trigger called');    
+    }*/
+
+
+    /*
     if (Trigger.isBefore) {
         system.debug('account before insert trigger called');
-        
     }
     if (Trigger.isAfter) {
         system.debug('account after insert trigger called');
-        
-    }
-    */
+    }*/
+    
+    
+}
