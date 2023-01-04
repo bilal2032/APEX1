@@ -5,9 +5,13 @@ public class AccountQueueableExample implements Queueable{
         listAcc = accounts;
     }
     public void execute(QueueableContext qc){
+        list<account> updateAccs = new list<account>();
         for (account eachAcc : listAcc) {
-            eachAcc.Name +=  ' -- SI';
+            Account a = new account();
+            a.Id = eachAcc.id;
+            a.Name =  eachAcc.Name + ' -- SI';
+            updateAccs.add(a);
         }
-        update listAcc;
+        update updateAccs;
     }
 }

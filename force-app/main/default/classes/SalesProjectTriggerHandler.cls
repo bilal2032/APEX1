@@ -30,6 +30,40 @@ public class SalesProjectTriggerHandler {
             sp.Status__c.addError('Cannot complete project because all tickets are not completed. Go away now.');
         }
    }
+   @future
+   public static void updateProjectDescription(Set<id> SpIds){
+        system.debug('inside future now. Okay?');
+        List<Salesforce_Project__c> allSp = [select id, description__c from salesforce_project__c where id in : spIds];
+
+        for(salesforce_project__c eachSP : allSp){
+            eachSP.Description__c += '. Updated from future';
+        }
+        update allSp;
+   }
+   public static void spCompletedStatus(List<salesforce_project__c> spTriggerNew, List<salesforce_project__c> spTriggerOld,
+   Map<Id, salesforce_project__c> spTriggerNewMap, Map<Id, salesforce_project__c> spTriggerOldMap){
+        set<id> spIds = new set<id>();
+        for(salesforce_project__c eachSp : spTriggerNew){
+            if(eachSP.Status__c == 'Completed' && eachSP.Status__c != spTriggerOldMap.get(eachSP.Id).Status__c){
+                spIds.add(eachSp.id);
+            }
+
+        }
+        if(!spIds.isEmpty()){
+            completeAllTickets(spIds);
+        }
+
+   }
+   @future
+   public static void completeAllTickets(set<id> spIds){
+        List<salesforce_ticket__c> allST = [select id, status__c, salesforce_project__c from Salesforce_Ticket__c where salesforce_project__c in : spIds and status__c != 'Completed'];
+
+        for(salesforce_ticket__c eachST : allST){
+            eachST.status__c = 'Completed';
+        }
+        update allST;
+
+   }
 
 
     /*

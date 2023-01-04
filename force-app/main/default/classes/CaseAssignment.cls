@@ -1,7 +1,6 @@
 public class CaseAssignment {
      
-        public static void 
-        { 
+        public static void caseInsert(){ 
             case c = new case(); 
             c.Subject = 'Testcase'; 
             c.Origin='Phone'; 
