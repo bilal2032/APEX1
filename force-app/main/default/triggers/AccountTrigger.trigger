@@ -1,6 +1,11 @@
 trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
+/*
+    if (Trigger.isAfter && Trigger.isUpdate) {
     
-
+        FutureDemo12.updateDescriptionHelper(trigger.new, trigger.oldMap);
+    }
+    
+/*
     if (Trigger.isBefore) {
         AccountTriggerHandler.updateAccountDescription(trigger.new, trigger.old, trigger.newMap, trigger.oldMap);
     }

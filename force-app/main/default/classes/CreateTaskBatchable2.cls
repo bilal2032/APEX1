@@ -2,7 +2,7 @@ public class CreateTaskBatchable2 implements Database.Batchable<sObject>, Databa
     public integer count = 0;
 
     public Database.QueryLocator start(Database.BatchableContext bc){
-        database.QueryLocator q1 = Database.getQueryLocator([select id, stageName from opportunity where stageName != 'Closed lost']);
+        database.QueryLocator q1 = Database.getQueryLocator([select id, stageName from opportunity where stageName = 'Closed lost']);
 
         return q1;
     }

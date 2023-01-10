@@ -1,5 +1,5 @@
 trigger OpportunityTrigger on Opportunity (before insert, after insert, before update, after update, after delete, after undelete) {
-
+/*
     Set<id> accIds = new Set<id>();
     
     if (trigger.isAfter) {
@@ -33,6 +33,6 @@ trigger OpportunityTrigger on Opportunity (before insert, after insert, before u
 
         if(!accIds.isEmpty()){
             OpportunityTriggerHandler.updateHighestAmount(accIds);
-        }
+        }*/
 
 }   

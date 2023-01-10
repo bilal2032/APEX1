@@ -1,4 +1,4 @@
-public class AccountTriggerHandler {
+public inherited sharing class AccountTriggerHandler {
     public static void updateAccountDescription(List<account> accTriggerNew, List<account> accTriggerOld, 
                                     Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
         for (Account eachAccount : accTriggerNew) {
