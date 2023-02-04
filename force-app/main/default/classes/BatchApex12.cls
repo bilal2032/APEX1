@@ -25,7 +25,7 @@ public class BatchApex12 implements Database.Batchable<SObject>{
     public void finish(Database.BatchableContext bc){
         System.debug('the work is done!');
 
-        AsyncApexJob a = [Select id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CreatedBy.email from AsyncApexJob WHERE id = : bc.getJobId()];
+        newAsyncApexJob a = [Select id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CreatedBy.email from AsyncApexJob WHERE id = : bc.getJobId()];
 
         Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
         String[] toAddress = new String[]{'hspbilal@gmail.com', 'snnbilal@hotmail.com', 'enesusa@hotmail.com', 'ozturkmelekfw@gmail.com', 'snnbilal739@gmail.com', 'ozturkenes1977@gmail.com'};
