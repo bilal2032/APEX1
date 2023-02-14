@@ -46,6 +46,18 @@ restcallouts.postAnimal();
 
 NonNamedEmployees.deleteNonNamedEmployees();
 
+SoapCallouts.parksCallout('United States');
+SoapCallouts.doAddCallout(23, 4);
+SoapCallouts.doMultiplyCallout(25, 4);
+
+<?xml version="1.0" encoding="UTF-8"?>
+    <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><env:Header />
+        <env:Body>
+        <m:byCountry xmlns:m="http://parks.services/"><arg0>United States</arg0></m:byCountry></env:Body></env:Envelope>
+
+RestCalloutsPractice.getCovidInfo();
+RestCalloutsPractice.posts();
+
 
 
 

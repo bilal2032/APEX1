@@ -140,7 +140,7 @@ public with sharing class RestCallouts {
         String body = '{"name":"mighty moose"}';
         request.setBody(body);
         request.setHeader('Content-Type', 'application/json;charset=UTF-8');
-
+        
         //2. Prepare internet
         Http http = new Http();
 
