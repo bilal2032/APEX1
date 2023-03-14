@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="P2C Using Primitives">
+        <div class="slds-var-m-around_medium">
+            <div>Parent communicates with child by passing primitives data</div>
+            <c-p2c-primitives-child
+                age={myAge}
+                city={myCity}
+                full-name={myName}>
+            </c-p2c-primitives-child>
+        </div>
+    </lightning-card>    
+</template>

@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Query Selectors" icon-name="action:map">
+        <div class="slds-var-m-around_medium">
+            <h1>This is a header tag!</h1>
+            <p>This is a paragraph tag! Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident soluta omnis non deserunt neque officiis, perferendis enim tempore cum veniam dolor fuga esse cupiditate voluptate debitis quas numquam distinctio velit.</p>
+            <template for:each={fruits} for:item='fruit'>
+                <div key={fruit} class="child">{fruit}</div>
+            </template>
+            <!--button-->
+            <div class="slds-var-m-top_small">
+                <lightning-button
+                    label="Click Me"
+                    variant="brand"
+                    onclick={clickHandler}>
+                </lightning-button>
+            </div>
+        </div>
+    </lightning-card>    
+</template>

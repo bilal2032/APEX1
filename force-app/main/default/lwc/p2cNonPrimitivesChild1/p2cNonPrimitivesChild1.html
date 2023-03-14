@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="P@C Non Primitives">
+        <div class="slds-var-m-around_medium">
+            <template if:true={carouselData}>
+                <lightning-carousel>
+                    <template for:each={carouselData} for:item="car">
+                        <lightning-carousel-image
+                            key={car.src}
+                            src={car.src}
+                            header={car.header}
+                            description={car.description}
+                            alternative-text={car.alternativeText}
+                            href={car.href}>
+
+                        </lightning-carousel-image>
+
+                    </template>
+                </lightning-carousel>
+            </template>
+        </div>
+    </lightning-card>    
+</template>
