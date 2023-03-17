@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Slider" icon-name="standard:case">
+        <div class="slds-var-m-around_medium">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning-input
+                    variant="label-hidden"
+                        type="number"
+                        value={volume}
+                        class="slds-var-m-right_xx-small"
+                        onchange={changeHandler}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col">
+                    <lightning-button
+                        label="Reset"
+                        variant="brand"
+                        onclick={handleReset}>
+                    </lightning-button>
+                </div>
+            </div>
+            <div class="slds-var-m-top_small">
+                <c-slider val={volume}></c-slider>
+            </div>           
+        </div>
+    </lightning-card>    
+</template>

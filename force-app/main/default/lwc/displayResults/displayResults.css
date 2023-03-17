@@ -1,0 +1,16 @@
+.search-results {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: azure;
+    color: black;
+}
+
+.search-error {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: azure;
+    color: darkred;
+}
+lightning-datatable {
+    background-color: aqua;
+}

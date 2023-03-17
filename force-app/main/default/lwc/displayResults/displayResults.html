@@ -1,0 +1,16 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <template if:true={records}>
+        <div class="search-results">Search Results</div>
+        <lightning-datatable
+            key-field="Id"
+            data={records}
+            columns={columns}>
+        </lightning-datatable>
+    </template>
+    <template if:true={error}>
+        <div class="search-error">Search Error</div>
+        <div>{error}</div>
+    </template>    
+</template>

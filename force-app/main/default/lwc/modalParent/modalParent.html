@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Child - Parent Communication">
+        <div class="slds-var-m-around_medium">
+            <lightning-button
+                label="Create Employee"
+                variant="brand"
+                onclick={createEmployee}>
+            </lightning-button>
+            <template if:true={showModal}>
+                <c-model-child
+                    onclose={closeHandler}>
+                </c-model-child>
+            </template>
+            <div class="slds-var-m-top_small">
+                
+                    <template if:true={message}>
+                        <!--Primitive Data-->
+                    <!--<div>{message}</div>-->
+                        <div>{message.Name}, {message.Position}, {message.Company}</div> 
+                    </template>                               
+            </div>
+        </div>
+    </lightning-card>
+    
+</template>
