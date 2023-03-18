@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="LMS Subscriber Comp">
+        <div class="slds-var-m-around_medium">
+            <div class="header">Recieved Message</div>
+            <template if:true={message}>
+                <div>{message}</div>
+            </template>
+            <template if:false={message}>
+                <div>
+                    Beep boop ....<br/>
+                    No message recieved yet. Check after sometime!
+                </div>
+            </template>
+        </div>
+    </lightning-card>    
+</template>
