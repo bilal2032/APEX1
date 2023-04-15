@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Student Search" icon-name="standard:contact">
+        <div class="slds-var-m-around_medium">
+            <!--Search Bar-->
+            <lightning-input
+                type="search"
+                label="Enter Postal Code"
+                onkeyup={searchHandler}>
+            </lightning-input>
+            <div class="slds-var-m-top_small">
+                <c-display-results
+                    records={studentInfo}
+                    columns={columns}
+                    error={error}>
+                </c-display-results>
+            </div>
+        </div>
+    </lightning-card>    
+</template>

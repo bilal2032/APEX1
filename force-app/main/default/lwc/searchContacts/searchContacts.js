@@ -28,7 +28,6 @@ export default class SearchContacts extends LightningElement {
             .catch(error => {
                 this.error = error.body.message;
                 this.contacts = undefined; 
-            }) 
-
+            })
     }
 }
