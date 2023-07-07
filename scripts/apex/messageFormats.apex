@@ -32,6 +32,14 @@ List<Contact> cntList = [Select Name, Phone, Email, Department FROM Contact WHER
 String jsonCnt = JSON.serialize(cntList);
 System.debug(jsonCnt);
 
+List<Account> accList = [SELECT Name, Type, Industry, AnnualRevenue 
+                        FROM Account 
+                        WHERE AnnualRevenue != null 
+                        AND Type != null 
+                        AND Industry != null 
+                        LIMIT 4];
+                        String jsonAccList = JSON.serialize(accList);
+
 List<Case> cs = [Select CaseNumber, Origin, ContactPhone from Case where origin !=null limit 3];
 String jsonCase = JSON.serialize(cs);
 System.debug(jsonCase);
@@ -43,6 +51,8 @@ restcallouts.getAirlines();
 restcallouts.getEmployees();
 restcallouts.getCasesUsingNC();
 restcallouts.postAnimal();
+
+RestCalloutsBO.getAnimals();
 
 NonNamedEmployees.deleteNonNamedEmployees();
 

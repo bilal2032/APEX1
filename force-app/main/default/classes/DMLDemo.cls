@@ -94,7 +94,7 @@ public class DMLDemo {
         }       
     }
     public static void dmlMultipleRecordUpdate_right() {
-        list<account> listAccount = [Select ID, name, active__c from account];
+        list<account> listAccount = [Select ID, name, active__c from account WITH SECURITY_ENFORCED];
 
         list<account> updateAccount =new list<account>();
 
@@ -107,5 +107,5 @@ public class DMLDemo {
         if(!updateAccount.isEmpty()){
             update updateAccount;
         }        
-    }
+    }    
 }
