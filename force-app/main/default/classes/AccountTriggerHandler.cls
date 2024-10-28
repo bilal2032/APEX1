@@ -1,4 +1,39 @@
 public inherited sharing class AccountTriggerHandler {
+    public static void updateCasePriority(List<Account> newTriggerList, Map<Id, Account> oldTriggerMap) {
+        
+        Set<Id> accIds = new Set<Id>();
+        for (Account acc : newTriggerList) {
+            if(acc.Rating != oldTriggerMap.get(acc.Id).Rating) {
+                accIds.add(acc.Id);
+            }            
+        }
+
+        if (!accIds.isEmpty()) {
+            List<Case> cases = [SELECT Id, Priority, Account.Rating, AccountId 
+                            FROM Case
+                            WHERE AccountId IN: accIds
+                            WITH SECURITY_ENFORCED];
+
+            if(!cases.isEmpty()) {
+                for (Case cs : cases) {
+                    if(cs.Account.Rating == 'Hot') {
+                        cs.Priority = 'High';
+                    } else if(cs.Account.Rating == 'Warm') {
+                        cs.Priority = 'Medium';
+                    } else if(cs.Account.Rating == 'Cold') {
+                        cs.Priority = 'Low';
+                    } else {
+                        cs.Priority = null;
+                    }                   
+                }
+                update cases;
+            }                                     
+        }        
+    }
+
+
+
+
     public static void updateAccountDescription(List<account> accTriggerNew, List<account> accTriggerOld, 
                                     Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
         for (Account eachAccount : accTriggerNew) {

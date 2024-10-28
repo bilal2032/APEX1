@@ -10,7 +10,7 @@ public with sharing class RestCallouts {
         //2. Prepare internet
         Http http = new Http();
 
-        //3. Send the HttpRequest over the internet in order to recieve HttpRespose back
+        //3. Send the HttpRequest over the internet in order to recieve HttpResponse back
         HttpResponse response = http.send(request);
 
         //4. Process HttpResponse
@@ -141,6 +141,7 @@ public with sharing class RestCallouts {
         request.setBody(body);
         request.setHeader('Content-Type', 'application/json;charset=UTF-8');
         
+        
         //2. Prepare internet
         Http http = new Http();
 
@@ -151,6 +152,8 @@ public with sharing class RestCallouts {
         //4. Process HttpResponse
         if (response.getStatusCode() == 201) {
             System.debug('Request has been processes successfully!');
+            System.debug(response.getStatus());
+            System.debug(response.getBody());
         } else {
             System.debug('Something went wrong while creating animal information: ' + response.getBody());
         }

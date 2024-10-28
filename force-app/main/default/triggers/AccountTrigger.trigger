@@ -1,4 +1,9 @@
 trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
+    if (Trigger.isAfter) {
+        if (Trigger.isUpdate) {
+            AccountTriggerHandler.updateCasePriority(Trigger.new, Trigger.oldMap);            
+        }        
+    }
 /*
     if (Trigger.isAfter && Trigger.isUpdate) {
     
